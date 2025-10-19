@@ -1,4 +1,4 @@
-const { newUserService,loginUserService } = require("../services/user.service.js");
+const { newUserService,loginUserService,u, updateUserService, deleteUserService } = require("../services/user.service.js");
 
 exports.newUserController = async (req, res) => {
   try {
@@ -38,5 +38,55 @@ exports.loginUserController =  async (req,res) => {
 
     })
     
+  }
+};
+
+exports.updateUserController = async (req,res) => {
+  try {
+    const{id} = req.params;
+    const {...value} = req.body;
+    if(!id && !value){
+      return res.status(400).json({
+        message: "Invalid Data",
+        sucess: false
+      })
+    }
+    const updatedData = await updateUserService(id,value)
+  return res.status(200).json({
+    sucess: true,
+    data: updatedData,
+    message: "User Updated Sucessfully"
+  })
+
+    
+  } catch (error) {
+    return res.status(500).json({
+      sucess: false,
+      message: error.message
+    })
+    
+  }
+}
+
+exports.deleteUserController = async (req,res) => {
+  try {
+    const {id} = req.params
+    if(!id){
+     return res.status(400).json({
+      sucess: false,
+      message: "Id should not be empty"
+     })
+     }
+    const user = await deleteUserService(id)
+    return res.status(200).json({
+      sucess: true,
+      message: " User Deleted Sucessfully",
+      data: user
+    })
+  } catch (error) {
+    return res.status(500).json({
+      sucess: false,
+      message: error.message
+    })
   }
 }

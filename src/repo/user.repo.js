@@ -24,3 +24,17 @@ exports.loginUserRepo = async (filter) => {
     throw new Error(error.message);
   }
 };
+
+exports.updateUserRepo = async(id,value) => {
+return await User.findByIdAndUpdate(id,value,{new: true})
+
+}
+
+exports.deleteUserRepo = async(id) => {
+  try {
+    return await User.findByIdAndDelete(id)
+  } catch (error) {
+    throw new Error(error.message)
+    
+  }
+}
