@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require("express");
 const connectDB = require("./src/config/db.js");
 const userRoute = require("./src/routes/user.route.js")
+const governmentSchemeRoute = require("./src/routes/governmentScheme.route.js")
 
 
 
@@ -14,7 +15,10 @@ app.use(express.json());
 
 // Connect Database
 connectDB();
+
 app.use('/api/v1',userRoute);
+app.use('/api/v1',governmentSchemeRoute);
+
 // Simple Route
 app.get("/", (req, res) => {
   res.send("Hello from Express + MongoDB (Connected via db.js)!");
