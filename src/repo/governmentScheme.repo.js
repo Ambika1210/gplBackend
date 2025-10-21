@@ -1,31 +1,36 @@
 const governmentScheme = require("../models/governmentScheme.model");
 
 exports.CreateGovernmentSchemeRepo = async (newData) => {
-   return await governmentScheme.create(newData);
-
-
-}
+  return await governmentScheme.create(newData);
+};
 exports.getAllGovernmentSchemeRepo = async () => {
-   return await governmentScheme.find()
-}
+  return await governmentScheme.find();
+};
 
-exports.deleteGovernmentSchemeRepo = async(id) => {
+exports.deleteGovernmentSchemeRepo = async (id) => {
   try {
-    return await governmentScheme.findByIdAndDelete(id)
+    return await governmentScheme.findByIdAndDelete(id);
   } catch (error) {
-    throw new Error(error.message)
-    
+    throw new Error(error.message);
   }
-}
+};
 
-exports.updateGovernmentSchemeRepo = async(id,data) => {
+exports.updateGovernmentSchemeRepo = async (id, data) => {
   try {
-    return await governmentScheme.findByIdAndUpdate(id,data,{
+    return await governmentScheme.findByIdAndUpdate(id, data, {
       new: true,
-      runValidators: true
-    })
+      runValidators: true,
+    });
   } catch (error) {
-    throw new Error(error.message)
-    
+    throw new Error(error.message);
   }
-}
+};
+
+exports.findLastDateToApplyRepo = async (date) => {
+  try {
+    return await governmentScheme.find({ lastDateToApply: { $gte: date } });
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
