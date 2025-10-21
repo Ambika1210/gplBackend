@@ -1,4 +1,5 @@
-const { CreateGovernmentSchemeRepo, getAllGovernmentSchemeRepo,deleteGovernmentSchemeRepo,updateGovernmentSchemeRepo} = require("../repo/governmentScheme.repo");
+const { findLastDateToApplyController } = require("../controller/governmentScheme.controller");
+const { CreateGovernmentSchemeRepo, getAllGovernmentSchemeRepo,deleteGovernmentSchemeRepo,updateGovernmentSchemeRepo,findLastDateToApplyRepo} = require("../repo/governmentScheme.repo");
 
 exports.CreateGovernmentSchemeService = async (newData) => {
 
@@ -26,4 +27,17 @@ exports.updateGovernmentSchemeService= async(id,dta) => {
     throw new Error(error.message)
     
   }
+}
+
+exports.findLastDateToAppyService = async(date) => {
+  try {
+    const lastDate = date? new Date(date) : new Date()
+    return await findLastDateToApplyRepo(lastDate)
+  
+   } catch (error) {
+    throw new Error(error.message)
+    
+    
+  }
+
 }
