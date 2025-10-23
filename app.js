@@ -5,6 +5,7 @@ const express = require("express");
 const connectDB = require("./src/config/db.js");
 const userRoute = require("./src/routes/user.route.js")
 const governmentSchemeRoute = require("./src/routes/governmentScheme.route.js")
+const filledFormRoute = require("./src/routes/filledForm.route.js")
 
 
 
@@ -18,6 +19,8 @@ connectDB();
 
 app.use('/api/v1',userRoute);
 app.use('/api/v1',governmentSchemeRoute);
+app.use('/api/v1',filledFormRoute);
+
 
 // Simple Route
 app.get("/", (req, res) => {

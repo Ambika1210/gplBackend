@@ -30,7 +30,8 @@ const governmentSchemeSchema = new mongoose.Schema({
   },
   lastDateToApply: {
     type: Date
-  }
+  },
+  
 });
 const governmentScheme = mongoose.model("governmentScheme", governmentSchemeSchema);
 module.exports = governmentScheme
