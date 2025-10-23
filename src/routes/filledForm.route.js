@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const { createFormController } = require("../controller/filledForm.controller");
+const { createFormController,getAllFormController } = require("../controller/filledForm.controller");
 
 router.post("/create-new-form",createFormController)
+router.get("/get-all-form",getAllFormController)
 module.exports = router;
 
 

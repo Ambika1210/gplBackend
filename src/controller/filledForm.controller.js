@@ -1,4 +1,4 @@
-const {createNewFormService} = require("../services/filledForm.service")
+const {createNewFormService,getAllNewFormService} = require("../services/filledForm.service")
 
 exports.createFormController = async (req, res) => {
   try {
@@ -17,3 +17,22 @@ exports.createFormController = async (req, res) => {
     });
   }
 };
+
+exports.getAllFormController = async(req,res) => {
+    try {
+    const allForm =await getAllNewFormService()
+        return res.status(201).json({
+      sucess: true,
+      message: "form retrieved sucesssfully",
+      data: allForm,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      sucess: false,
+      message: error.message || "server Error",
+    });
+  }
+}
+        
+    
+

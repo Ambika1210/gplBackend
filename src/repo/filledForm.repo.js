@@ -17,3 +17,13 @@ exports.createNewFormRepo = async (data) => {
   }
 };
 
+exports.getAllNewFormRepo = async () => {
+  try {
+    const forms = await filledFormTable.find().populate("user", "name mobile").populate("scheme", "schemeName schemeType");
+
+    return forms;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
