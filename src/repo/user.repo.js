@@ -38,3 +38,14 @@ exports.deleteUserRepo = async(id) => {
     
   }
 }
+
+exports.getUserById = async(id) =>{
+  try {
+    return await User.findById(id)
+  } catch (error) {
+    throw new Error(error.message)
+
+    
+  }
+
+}

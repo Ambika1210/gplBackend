@@ -34,6 +34,17 @@ exports.findLastDateToApplyRepo = async (date) => {
   }
 };
 
+exports.getSchemeById = async (id) => {
+  try {
+    return await governmentScheme.findById(id)
+    
+  } catch (error) {
+        throw new Error(error.message);
+
+    
+  }
+}
+
 
 
 

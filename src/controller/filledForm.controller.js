@@ -11,6 +11,17 @@ exports.createFormController = async (req, res) => {
       data: filledFormData,
     });
   } catch (error) {
+    if(error.message === "User not found"){
+      return res.status(400).json({
+        message: error.message
+      })
+    }
+if(error.message === "Scheme not found"){
+      return res.status(400).json({
+        message: error.message
+      })
+    }
+
     return res.status(500).json({
       sucess: false,
       message: error.message || "server Error",
