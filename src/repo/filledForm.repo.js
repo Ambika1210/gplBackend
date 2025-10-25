@@ -27,3 +27,22 @@ exports.getAllNewFormRepo = async () => {
   }
 };
 
+exports.updateFormRepo = async ({id},data) => {
+  try {
+     const update =  await filledFormTable.findByIdAndUpdate(id,data)
+     return update
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+exports.deleteFormRepo = async (id) => {
+  try {
+   return  await filledFormTable.findByIdAndDelete(id)
+    
+  } catch (error) {
+        throw new Error(error.message)
+
+    
+  }
+}

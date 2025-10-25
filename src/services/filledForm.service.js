@@ -1,4 +1,4 @@
-const {createNewFormRepo,getAllNewFormRepo} = require("../repo/filledForm.repo")
+const {createNewFormRepo,getAllNewFormRepo, updateFormRepo, deleteFormRepo} = require("../repo/filledForm.repo")
 
 
 exports.createNewFormService= async (data) => {
@@ -19,5 +19,27 @@ exports.getAllNewFormService = async () => {
   
   }
 }
+
+exports.updateFormService = async (id,data) => {
+  try {
+    return await updateFormRepo(id,data)
+    
+  } catch (error) {
+    throw new Error(error.message)
+    
+  }
+}
+
+exports.deleteFormService = async (id) => {
+  try {
+   return await deleteFormRepo(id)
+    
+  } catch (error) {
+        throw new Error(error.message)
+
+    
+  }
+}
+
 
 
