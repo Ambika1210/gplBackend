@@ -1,4 +1,4 @@
-const {createNewFormService,getAllNewFormService} = require("../services/filledForm.service")
+const {createNewFormService,getAllNewFormService, updateFormService,deleteFormService} = require("../services/filledForm.service")
 
 exports.createFormController = async (req, res) => {
   try {
@@ -44,6 +44,42 @@ exports.getAllFormController = async(req,res) => {
     });
   }
 }
-        
+  
+exports.updateFormController = async(req,res) => {
+  try {
+    const formId = req.params;
+    const formData = req.body;
+   const form =  await updateFormService(formId,formData)
+   return res.status(200).json({
+      sucess: true,
+      message: "form updated sucessfully",
+      data: form,
+    });
+  } catch (error) {
+     return res.status(500).json({
+      sucess: false,
+      message: error.message || "server Error",
+    });
+    
+  }
+}
+
+exports.deleteFormController = async(req,res) => {
+  try {
+    const {formId} = req.params;
+   const form =  await deleteFormService(formId)
+   return res.status(200).json({
+      sucess: true,
+      message: "form deleted sucessfully",
+//data: form,
+    });
+  } catch (error) {
+     return res.status(500).json({
+      sucess: false,
+      message: error.message || "server Error",
+    });
+    
+  }
+}
     
 
