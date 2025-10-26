@@ -31,6 +31,10 @@ const governmentSchemeSchema = new mongoose.Schema({
   lastDateToApply: {
     type: Date
   },
+  isActive: {
+    type: Boolean,
+    default: true
+  }
   
 });
 const governmentScheme = mongoose.model("governmentScheme", governmentSchemeSchema);
