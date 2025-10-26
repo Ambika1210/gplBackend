@@ -1,4 +1,4 @@
-const { newUserRepo, loginUserRepo,updateUserRepo, deleteUserRepo } = require("../repo/user.repo.js");
+const { newUserRepo, loginUserRepo,updateUserRepo, deleteUserRepo, getAllUser } = require("../repo/user.repo.js");
 const { generateToken } = require("../middleware/auth.middleware.js");
 
 exports.newUserService = async (userData) => {
@@ -50,5 +50,13 @@ exports.deleteUserService = async(id) => {
   } catch (error) {
     throw new Error(error.message)
     
+  }
+}
+
+exports.getAllUserService=async()=>{
+  try {
+    return await getAllUser()   
+  } catch (error) {
+    throw new Error(error.message)
   }
 }

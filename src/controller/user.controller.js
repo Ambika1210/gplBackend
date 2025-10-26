@@ -1,4 +1,4 @@
-const { newUserService,loginUserService,u, updateUserService, deleteUserService } = require("../services/user.service.js");
+const { newUserService,loginUserService,u, updateUserService, deleteUserService, getAllUserService } = require("../services/user.service.js");
 
 exports.newUserController = async (req, res) => {
   try {
@@ -83,6 +83,23 @@ exports.deleteUserController = async (req,res) => {
       message: " User Deleted Sucessfully",
       data: user
     })
+  } catch (error) {
+    return res.status(500).json({
+      sucess: false,
+      message: error.message
+    })
+  }
+}
+
+exports.getAllUserController=async(req,res)=>{
+  try {
+    const users=await getAllUserService()
+    return res.status(200).json({
+      sucess: true,
+      message: " User feteched Sucessfully",
+      data: users
+    })
+
   } catch (error) {
     return res.status(500).json({
       sucess: false,

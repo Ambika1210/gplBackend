@@ -43,9 +43,14 @@ exports.getUserById = async(id) =>{
   try {
     return await User.findById(id)
   } catch (error) {
-    throw new Error(error.message)
-
-    
+    throw new Error(error.message)   
   }
+}
 
+exports.getAllUser= async() =>{
+  try {
+    return await User.find()
+  } catch (error) {
+    throw new Error(error.message)
+  }
 }

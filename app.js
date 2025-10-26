@@ -2,6 +2,7 @@
 
 require('dotenv').config();
 const express = require("express");
+const cors = require("cors");
 const connectDB = require("./src/config/db.js");
 const userRoute = require("./src/routes/user.route.js")
 const governmentSchemeRoute = require("./src/routes/governmentScheme.route.js")
@@ -13,7 +14,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-
+app.use(cors());
 // Connect Database
 connectDB();
 
