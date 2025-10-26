@@ -2,11 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 const { createFormController,getAllFormController,updateFormController, deleteFormController} = require("../controller/filledForm.controller");
+const {verifyTokenAuth,verifyTokenAdmin} = require("../middleware/auth.middleware.js")
 
-router.post("/create-new-form",createFormController)
-router.get("/get-all-form",getAllFormController)
-router.patch("/update-form/:id",updateFormController)
-router.delete("/delete-form/:id",deleteFormController)
+router.post("/create-new-form",verifyTokenAuth,createFormController)
+router.get("/get-all-form",verifyTokenAdmin,getAllFormController)
+router.patch("/update-form/:id",verifyTokenAuth,updateFormController)
+router.delete("/delete-form/:id",verifyTokenAdmin,deleteFormController)
 
 
 module.exports = router;
