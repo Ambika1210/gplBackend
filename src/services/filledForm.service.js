@@ -54,5 +54,19 @@ exports.deleteFormService = async (id) => {
   }
 }
 
+exports.feesAmountCalculation = async () => {
+  try {
+    const forms = await getAllNewFormRepo();
+    if (!forms) {
+      return { total: 0 };
+    }
+    const totalFee = forms.reduce((sum, form) => sum + (form.formFee || 0), 0);
+
+    return totalFee;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 
 
