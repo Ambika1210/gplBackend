@@ -1,7 +1,9 @@
+const { trusted } = require("mongoose");
 const { findLastDateToApplyController } = require("../controller/governmentScheme.controller");
 const { CreateGovernmentSchemeRepo, getAllGovernmentSchemeRepo,deleteGovernmentSchemeRepo,updateGovernmentSchemeRepo,findLastDateToApplyRepo
   
-  ,filledFormRepo
+  ,filledFormRepo,
+  getActiveSchemesRepo
 } = require("../repo/governmentScheme.repo");
 
 exports.CreateGovernmentSchemeService = async (newData) => {
@@ -44,3 +46,11 @@ exports.findLastDateToAppyService = async(date) => {
   }
 
 }
+
+exports.getAllActiveSchemeService = async () => {
+  try {
+    return await getActiveSchemesRepo();
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};

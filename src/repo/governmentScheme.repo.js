@@ -45,6 +45,15 @@ exports.getSchemeById = async (id) => {
   }
 }
 
+exports.getActiveSchemesRepo = async () => {
+  try {
+    const activeSchemes = await governmentScheme.find({ isActive: true });
+    return activeSchemes;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 
 
 

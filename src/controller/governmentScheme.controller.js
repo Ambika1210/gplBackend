@@ -4,7 +4,8 @@ const {
   deleteGovernmentSchemeService,
   updateGovernmentSchemeService,
   findLastDateToAppyService,
-  filledFormService
+  filledFormService,
+  getAllActiveSchemeService
 } = require("../services/governmentScheme.service");
 
 exports.CreateGovernmentSchemeController = async (req, res) => {
@@ -96,6 +97,22 @@ exports.findLastDateToApplyController = async (req, res) => {
     return res.status(200).json({
       sucess: true,
       message: "last date to apply found ",
+      data: schemes,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      sucess: false,
+      message: error.message || "server Error",
+    });
+  }
+};
+
+exports.getAllActiveSchemeController = async (req, res) => {
+  try {
+    const schemes = await getAllActiveSchemeService();
+    return res.status(200).json({
+      sucess: true,
+      message: "active scheme fetched ",
       data: schemes,
     });
   } catch (error) {
