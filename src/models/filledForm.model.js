@@ -20,6 +20,12 @@ const filledFormSchema = new mongoose.Schema({
     type: Number,
     require: true
 
+  },
+  formStatus:
+  {
+    type: String,
+    enum:["pending" ,"approved"],
+    default: "pending"
   }
 
 });

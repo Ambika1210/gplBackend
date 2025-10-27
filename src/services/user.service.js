@@ -53,10 +53,11 @@ exports.deleteUserService = async(id) => {
   }
 }
 
-exports.getAllUserService=async()=>{
+exports.getAllUserService=async(date)=>{
   try {
-    return await getAllUser()   
+    return await getAllUser(date)   
   } catch (error) {
     throw new Error(error.message)
   }
 }
+

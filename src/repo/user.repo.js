@@ -47,10 +47,22 @@ exports.getUserById = async(id) =>{
   }
 }
 
-exports.getAllUser= async() =>{
+exports.getAllUser = async ({date}) => {
   try {
-    return await User.find()
+    if (date) {
+      const startOfDay = new Date(date);
+      startOfDay.setHours(0, 0, 0, 0);
+
+      const endOfDay = new Date(date);
+      endOfDay.setHours(23, 59, 59, 999);
+
+      return await User.find({
+        createdAt: { $gte: startOfDay, $lte: endOfDay },
+      });
+    } else {
+      return await User.find();
+    }
   } catch (error) {
-    throw new Error(error.message)
+    throw new Error(error.message);
   }
-}
+};

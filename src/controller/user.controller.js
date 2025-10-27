@@ -93,7 +93,7 @@ exports.deleteUserController = async (req,res) => {
 
 exports.getAllUserController=async(req,res)=>{
   try {
-    const users=await getAllUserService()
+    const users=await getAllUserService(req.body)
     return res.status(200).json({
       sucess: true,
       message: " User feteched Sucessfully",
